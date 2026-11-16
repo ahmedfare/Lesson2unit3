@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0757dc" />
+  <meta name="description" content="CodeUp interactive offline classroom lab for Web Application Communication Methods." />
+  <title>CodeUp | Web Communication Lab — Lesson 3-2</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand" aria-label="CodeUp with Ahmed Fareed"><span>Code<span class="brand-up">Up</span></span><small>with Ahmed Fareed</small></div>
+      <div class="course-pill">🌐 UNIT 3 · WEB APPLICATIONS <span class="pill-divider">|</span> LESSON 3-2</div>
+      <div class="top-actions">
+        <button class="top-btn" id="teacherToggle" aria-pressed="false" title="Show teacher notes">🎓 <span>Teacher Tips</span></button>
+        <button class="top-btn" id="fullscreenBtn" title="Full screen (F)">⛶ <span>Present</span></button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">CODEUP INTERACTIVE CLASSROOM</div>
+        <h1>Web Application <span>Communication Methods</span></h1>
+        <p>Watch requests travel, compare HTTP and HTTPS, send GET and POST, explore APIs and JSON — all in one interactive lesson.</p>
+        <div class="hero-badges"><span>⚡ Fully interactive</span><span>📡 Realistic simulations</span><span>📴 Works offline</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="orb orb-a">💻</div><div class="orb orb-b">🌐</div><div class="orb orb-c">🗄️</div><div class="orb orb-d">{ JSON }</div><div class="hero-link l1"></div><div class="hero-link l2"></div><div class="hero-link l3"></div></div>
+    </section>
+
+    <nav class="tabs" aria-label="Lesson topics">
+      <button class="tab active" data-tab="client"><span class="tab-number">01</span><span>Client & Server</span></button>
+      <button class="tab" data-tab="protocol"><span class="tab-number">02</span><span>HTTP vs HTTPS</span></button>
+      <button class="tab" data-tab="methods"><span class="tab-number">03</span><span>GET / POST / Codes</span></button>
+      <button class="tab" data-tab="api"><span class="tab-number">04</span><span>API & JSON</span></button>
+      <button class="tab challenge-tab" data-tab="quiz"><span class="tab-number">★</span><span>Class Challenge</span></button>
+    </nav>
+
+    <main id="main">
+      <!-- TOPIC 1 -->
+      <section class="topic active" id="client" aria-labelledby="clientTitle">
+        <div class="section-heading"><div><div class="section-kicker">TOPIC 1 · REQUEST → RESPONSE</div><h2 id="clientTitle">Who talks to whom?</h2><p>The <b>Client</b> sends a request. The <b>Server</b> processes it and sends back a response.</p></div><span class="section-icon">💬</span></div>
+        <div class="teacher-note">🎓 <b>Teacher prompt:</b> اسألهم: لما تكتب Python Tutorial على YouTube، مين بيبعت الطلب ومين بيرجع الفيديوهات؟ خلّي طالب يمثل الـClient وطالب يمثل الـServer.</div>
+        <div class="two-col intro-cards">
+          <div class="definition-card blue"><div class="definition-icon">💻</div><div><h3>Client</h3><p>The side that <strong>requests data or processing</strong> from a server.</p><small>Examples: Chrome browser · YouTube app · Weather app</small></div></div>
+          <div class="definition-card purple"><div class="definition-icon">🖥️</div><div><h3>Server</h3><p>The side that <strong>receives requests, processes them, and returns responses</strong>.</p><small>Examples: Web server · Application server</small></div></div>
+        </div>
+        <div class="lab-card">
+          <div class="lab-title"><div><h3>▶ YouTube Search: Watch the journey</h3><p>Type a search, then move through the four communication stages.</p></div><span class="lab-tag">LIVE SIMULATION</span></div>
+          <div class="control-row"><label for="searchInput">Search videos</label><input id="searchInput" type="text" value="Python Tutorials" maxlength="50" placeholder="Search for a video..." /><button class="btn primary" id="runJourney">▶ Run Animation</button><button class="btn outline" id="nextJourney">Next Step →</button><button class="btn ghost" id="resetJourney">↺ Reset</button></div>
+          <div class="journey-stage" id="journeyStage">
+            <div class="device client-device" id="journeyClient"><div class="device-icon">💻</div><strong>CLIENT</strong><small>Browser</small><div class="device-screen" id="clientScreen">🔎 Python Tutorials</div></div>
+            <div class="transit"><div class="transit-label upper">REQUEST →</div><div class="transit-track"><div class="moving-packet" id="requestPacket">📨</div></div><div class="transit-track response-track"><div class="moving-packet" id="responsePacket">📦</div></div><div class="transit-label lower">← RESPONSE</div></div>
+            <div class="device server-device" id="journeyServer"><div class="device-icon">🗄️</div><strong>SERVER</strong><small>Processes request</small><div class="device-screen" id="serverScreen">⏳ Waiting...</div></div>
+          </div>
+          <div class="stepper" id="journeySteps"><div class="step current" data-step="0"><b>1</b><strong>Request</strong><small>Client sends search</small></div><div class="step" data-step="1"><b>2</b><strong>Processing</strong><small>Server finds videos</small></div><div class="step" data-step="2"><b>3</b><strong>Response</strong><small>Server returns results</small></div><div class="step" data-step="3"><b>4</b><strong>Display</strong><small>Client shows results</small></div></div>
+          <div class="event-console"><span class="console-label">● CLASSROOM CONSOLE</span><p id="journeyLog" aria-live="polite">Ready. The client is waiting to send a request.</p></div>
+        </div>
+        <div class="takeaway">💡 <strong>Remember:</strong> Client = requests and displays · Server = receives, processes and responds.</div>
+      </section>
+
+      <!-- TOPIC 2 -->
+      <section class="topic" id="protocol" aria-labelledby="protocolTitle">
+        <div class="section-heading"><div><div class="section-kicker">TOPIC 2 · COMMUNICATION RULES</div><h2 id="protocolTitle">HTTP or HTTPS?</h2><p>A <b>protocol</b> is a set of rules that organizes communication between systems.</p></div><span class="section-icon">🔐</span></div>
+        <div class="teacher-note">🎓 <b>Teacher prompt:</b> قول للطلبة: لو جهازين بيتكلموا من غير قواعد متفق عليها، هيفهموا بعض؟ وبعدين اسألهم: لو هنبعت Password، نختار HTTP ولا HTTPS؟</div>
+        <div class="two-col intro-cards">
+          <div class="definition-card warm"><div class="definition-icon">🔓</div><div><h3>HTTP</h3><p><strong>HyperText Transfer Protocol</strong> — exchanges data between clients and servers.</p><small>Does not provide TLS encryption by itself.</small></div></div>
+          <div class="definition-card green"><div class="definition-icon">🔒</div><div><h3>HTTPS</h3><p><strong>HTTP Secure</strong> — HTTP communication protected with TLS encryption.</p><small>Helps protect data while it travels over the network.</small></div></div>
+        </div>
+        <div class="lab-card">
+          <div class="lab-title"><div><h3>🔐 Watch the data travel</h3><p>Switch between HTTP and HTTPS to compare what the simulation shows on the network.</p></div><span class="lab-tag">ENCRYPTION DEMO</span></div>
+          <div class="segmented" role="group" aria-label="Choose protocol"><button class="seg active" id="httpBtn" aria-pressed="true">🔓 HTTP</button><button class="seg" id="httpsBtn" aria-pressed="false">🔒 HTTPS</button></div>
+          <div class="protocol-visual"><div class="endpoint"><div class="endpoint-emoji">👩‍💻</div><strong>CLIENT</strong><small>Login form</small></div><div class="network"><div class="network-caption">DATA ON THE NETWORK</div><div class="network-line"><div id="dataPacket" class="data-packet">password=CodeUp123</div></div><div class="network-note" id="protocolExplanation">⚠️ Without TLS, HTTP does not encrypt the data in transit.</div></div><div class="endpoint"><div class="endpoint-emoji">🖥️</div><strong>SERVER</strong><small>Receives login</small></div></div>
+          <div class="control-row centered"><button class="btn primary" id="sendProtocol">▶ Send Login Request</button><button class="btn outline" id="resetProtocol">↺ Reset</button></div>
+          <div class="event-console"><span class="console-label">● NETWORK OBSERVER</span><p id="protocolLog" aria-live="polite">Select HTTP or HTTPS and send a request.</p></div>
+          <div class="disclaimer">ℹ️ Educational simulation only: the HTTPS view uses a visual placeholder, not real TLS encryption. HTTPS protects the connection but does not prove a website is trustworthy.</div>
+        </div>
+        <div class="takeaway">💡 <strong>Remember:</strong> HTTP = communication rules · HTTPS = HTTP with TLS protection.</div>
+      </section>
+
+      <!-- TOPIC 3 -->
+      <section class="topic" id="methods" aria-labelledby="methodsTitle">
+        <div class="section-heading"><div><div class="section-kicker">TOPIC 3 · REQUEST METHODS & RESULTS</div><h2 id="methodsTitle">GET, POST and Status Codes</h2><p>The <b>method</b> says what action is requested. The <b>status code</b> says what happened.</p></div><span class="section-icon">📡</span></div>
+        <div class="teacher-note">🎓 <b>Teacher prompt:</b> قولهم GET يعني «هات بيانات»، وPOST يعني «دي بيانات عايزك تعالجها». بعدين اعمل خطأ 404 و500 وخليهم يخمنوا السبب.</div>
+        <div class="two-col intro-cards"><div class="definition-card blue"><div class="definition-icon">🔍</div><div><h3>GET <span class="tiny-label">Retrieve data</span></h3><p>Ask the server for information.</p><small>Example: Search YouTube · View product details</small></div></div><div class="definition-card purple"><div class="definition-icon">📤</div><div><h3>POST <span class="tiny-label">Submit data</span></h3><p>Send data to the server for processing.</p><small>Example: Submit login · Sign-up form</small></div></div></div>
+        <div class="lab-card"><div class="lab-title"><div><h3>🧪 HTTP Request Simulator</h3><p>Choose an action, send a request, and inspect the response like a developer.</p></div><span class="lab-tag">DEVTOOLS LAB</span></div>
+          <div class="control-row"><label for="scenarioSelect">Scenario</label><select id="scenarioSelect"><option value="search">🔍 YouTube video search (GET)</option><option value="product">🛒 View product details (GET)</option><option value="login">🔑 Submit login form (POST)</option><option value="signup">📝 Submit sign-up form (POST)</option></select><label for="statusSelect">Server outcome</label><select id="statusSelect"><option value="200">200 — Success</option><option value="404">404 — Not Found</option><option value="500">500 — Server Error</option></select><button class="btn primary" id="sendHttp">▶ Send Request</button></div>
+          <div class="inspector"><div class="inspector-col"><div class="inspector-head">📨 REQUEST <span id="requestMethodBadge" class="method-badge">GET</span></div><pre id="requestPreview" class="code-block">GET /api/videos?q=Python%20Tutorials HTTP/1.1
+Host: codeup.example</pre></div><div class="inspector-col"><div class="inspector-head">📦 RESPONSE <span class="status-badge neutral" id="responseBadge">Waiting</span></div><pre id="responsePreview" class="code-block">// Click “Send Request” to see the response.</pre></div></div>
+          <div class="status-gallery"><button class="status-card" data-status="200"><span>✅</span><b>200</b><strong>Success</strong><small>Request completed</small></button><button class="status-card" data-status="404"><span>🔎</span><b>404</b><strong>Not Found</strong><small>Resource missing</small></button><button class="status-card" data-status="500"><span>⚠️</span><b>500</b><strong>Server Error</strong><small>Internal server problem</small></button></div>
+          <div class="event-console"><span class="console-label">● NETWORK LOG</span><p id="httpLog" aria-live="polite">Choose a scenario and send your first request.</p></div>
+        </div><div class="takeaway">💡 <strong>Remember:</strong> GET = “Give me data” · POST = “Here is my data” · 200 = Success · 404 = Not Found · 500 = Server Error.</div>
+      </section>
+
+      <!-- TOPIC 4 -->
+      <section class="topic" id="api" aria-labelledby="apiTitle">
+        <div class="section-heading"><div><div class="section-kicker">TOPIC 4 · SOFTWARE COMMUNICATION</div><h2 id="apiTitle">API and JSON</h2><p>An <b>API</b> defines how software exchanges data. <b>JSON</b> is a format for representing that data.</p></div><span class="section-icon">🧩</span></div>
+        <div class="teacher-note">🎓 <b>Teacher prompt:</b> اسألهم: تطبيق الطقس بيجيب الحرارة منين؟ بعد ما تجاوب، ورّيهم الـAPI Request والـJSON Response. خلي طالب يحدد الـKeys والـValues.</div>
+        <div class="two-col intro-cards"><div class="definition-card blue"><div class="definition-icon">🔌</div><div><h3>API</h3><p><strong>Application Programming Interface</strong> — lets different software systems request and exchange data.</p><small>Example: Weather app requests data from a weather service.</small></div></div><div class="definition-card purple"><div class="definition-icon">{ }</div><div><h3>JSON</h3><p><strong>JavaScript Object Notation</strong> — a data format using names (keys) and values.</p><small>Example: { "name": "Adam", "grade": 95 }</small></div></div></div>
+        <div class="lab-card"><div class="lab-title"><div><h3>🌤️ API Playground</h3><p>Send a request from an app through an API to a service. Inspect the returned JSON.</p></div><span class="lab-tag">API SIMULATOR</span></div>
+          <div class="control-row"><label for="apiScenario">Application</label><select id="apiScenario"><option value="weather">🌤️ Weather Application</option><option value="school">🎓 School Results Website</option></select><button class="btn primary" id="callApi">▶ Call API</button><button class="btn outline" id="resetApi">↺ Reset</button></div>
+          <div class="api-flow"><div class="api-node"><div>📱</div><b id="apiClientName">Weather App</b><small>Requests data</small></div><div class="api-arrow"><span>REQUEST →</span><i>➜</i><span>← RESPONSE</span></div><div class="api-node api-middle"><div>🔌</div><b>API</b><small>Defined interface</small></div><div class="api-arrow"><span>REQUEST →</span><i>➜</i><span>← RESPONSE</span></div><div class="api-node"><div>🖥️</div><b id="apiServiceName">Weather Service</b><small>Provides data</small></div></div>
+          <div class="api-bottom"><div class="api-display"><div class="panel-label">📱 APP DISPLAY</div><div class="app-result" id="apiDisplay"><span class="empty-icon">🌤️</span><p>Click “Call API” to get data.</p></div></div><div class="api-json"><div class="panel-label">{ } JSON RESPONSE <span class="small-muted">names → values</span></div><pre id="apiJson" class="code-block">// Waiting for API response...</pre></div></div>
+          <div class="event-console"><span class="console-label">● API ACTIVITY</span><p id="apiLog" aria-live="polite">The app is ready to request data through an API.</p></div>
+        </div>
+        <div class="lab-card json-lab"><div class="lab-title"><div><h3>🧠 JSON Detective</h3><p>Edit the JSON and check whether it is valid. Find the keys and values.</p></div><span class="lab-tag">HANDS-ON</span></div><div class="two-col"><div><label for="jsonEditor" class="field-label">EDIT JSON</label><textarea id="jsonEditor" spellcheck="false" rows="7">{
+  "name": "Adam",
+  "grade": 95,
+  "result": "Pass"
+}</textarea><div class="control-row"><button class="btn primary" id="validateJson">✓ Validate JSON</button><button class="btn outline" id="breakJson">⚡ Break JSON</button><button class="btn ghost" id="fixJson">↺ Restore</button></div></div><div><div class="panel-label">🔍 JSON ANALYSIS</div><div id="jsonFeedback" class="json-feedback"><div class="feedback-empty">Click “Validate JSON” to inspect the data.</div></div></div></div></div>
+        <div class="takeaway">💡 <strong>Remember:</strong> API = the way software communicates · JSON = the format of the exchanged data.</div>
+      </section>
+
+      <!-- CHALLENGE -->
+      <section class="topic" id="quiz" aria-labelledby="quizTitle"><div class="section-heading"><div><div class="section-kicker">FINAL CHALLENGE · CHECK UNDERSTANDING</div><h2 id="quizTitle">CodeUp Class Challenge 🏆</h2><p>Eight questions covering all four topics. Answer together as a class or let students compete.</p></div><span class="section-icon">🏆</span></div>
+        <div class="teacher-note">🎓 <b>Teacher prompt:</b> قسّم الفصل لفريقين. كل فريق يختار إجابة ويشرح السبب. استخدم زر Check Answer بعد ما تسمع تبريرهم.</div>
+        <div class="quiz-card"><div class="quiz-top"><span id="quizCounter">QUESTION 1 / 8</span><span id="quizScore">⭐ Score: 0</span></div><div class="quiz-progress"><div id="quizProgress"></div></div><h3 id="quizQuestion">Loading question...</h3><div id="quizOptions" class="quiz-options"></div><div id="quizExplanation" class="quiz-explanation" aria-live="polite"></div><div class="quiz-actions"><button class="btn outline" id="quizRestart">↺ Start Over</button><button class="btn primary" id="quizCheck">Check Answer</button><button class="btn primary" id="quizNext" disabled>Next Question →</button></div></div>
+      </section>
+    </main>
+    <footer><span><strong>Code<span class="brand-up">Up</span></strong> with Ahmed Fareed</span><span>Unit 3 · Lesson 3-2 · Educational simulations · Offline ready</span><span>Keyboard: <kbd>←</kbd> <kbd>→</kbd> topics · <kbd>F</kbd> fullscreen</span></footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
